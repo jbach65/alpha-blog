@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   def show
+    #debugger
     @article = Article.find(params[:id])
   end
 
@@ -36,4 +37,14 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    flash[:notice] = "Article was deleted."
+    #debugger
+    #redirect_to controller: 'articles'
+    #redirect_to action: "index" and return
+    redirect_to action: 'index', status: 303
+    #debugger
+  end
 end
